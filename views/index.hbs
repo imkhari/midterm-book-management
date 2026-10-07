@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý Sách</title>
+</head>
+<body>
+
+    <h1>Quản lý Sách</h1>
+
+    <h2>Thêm sách mới</h2>
+
+    <form action="/books" method="POST">
+        <div>
+            <label>Mã sản phẩm:</label>
+            <input
+                type="text"
+                name="productCode"
+                placeholder="Ví dụ: 119001"
+                required
+            >
+        </div>
+
+        <div>
+            <label>Tên sách:</label>
+            <input
+                type="text"
+                name="title"
+                required
+            >
+        </div>
+
+        <div>
+            <label>Tác giả:</label>
+            <input
+                type="text"
+                name="author"
+                required
+            >
+        </div>
+
+        <div>
+            <label>Giá trước VAT:</label>
+            <input
+                type="number"
+                name="price"
+                min="1"
+                step="0.01"
+                required
+            >
+        </div>
+
+        <button type="submit">Thêm sách</button>
+    </form>
+
+    <hr>
+
+    <h2>Danh sách sách</h2>
+
+    {{#if books.length}}
+        {{#each books}}
+            <div>
+                <p><strong>Mã:</strong> {{productCode}}</p>
+                <p><strong>Tên sách:</strong> {{title}}</p>
+                <p><strong>Tác giả:</strong> {{author}}</p>
+                <p><strong>Giá trước VAT:</strong> {{priceBeforeTax}}</p>
+                <p><strong>VAT:</strong> {{vat}}%</p>
+                <p><strong>Giá sau VAT:</strong> {{priceAfterTax}}</p>
+            </div>
+            <hr>
+        {{/each}}
+    {{else}}
+        <p>Chưa có sách.</p>
+    {{/if}}
+
+    <footer>
+        <p>
+            Họ tên: {{fullName}} |
+            MSSV: {{studentId}} |
+            VAT áp dụng: {{vat}}%
+        </p>
+    </footer>
+
+</body>
+</html>
